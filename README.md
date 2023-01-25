@@ -7,7 +7,7 @@
 ![](https://raw.githubusercontent.com/georgealan/Especialista-JPA-Algaworks/master/assets/AlgaworksEspecialistaJPABanner.jpg)
 
 <h3 align="center">
-    🏆 Treinamento imersivo e online sobre desenvolvimento de REST APIs com Spring para desenvolvimento de REST APIs, como Spring Framework, Spring MVC, Spring Boot, Spring Data JPA, Spring Security, Spring Security OAuth 2 e Spring HATEOAS.
+    🏆 Treinamento imersivo e online sobre Hibernate JPA.
 </h3>
 
 <p align="center">
@@ -40,18 +40,11 @@
 Tabela de conteúdos
 =================
 <!--ts-->
-   * [Sobre o projeto](#-sobre-o-projeto)
    * [Tecnologias](#-tecnologias)
    * [Autor](#-autor)
    * [Licença](#user-content--licença)
 <!--te-->
 
-
-## 💻 Sobre o projeto
-
-♻️ Algafood API - É uma API REST para um restaurante, com funcionalidades de gerenciamento de um restaurante, cadastro de restaurantes, gerenciamento de pedidos, formas de pagamento e muito mais.
-
----
 
 ## :hammer_and_wrench: Tecnologias
 
