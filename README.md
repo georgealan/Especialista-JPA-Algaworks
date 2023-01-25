@@ -4,7 +4,7 @@
      💻 <a href="https://www.algaworks.com/" alt="site da Algaworks" target="_blank"> Curso Especialista-JPA-Algaworks </a>
 </h1>
 
-![](https://raw.githubusercontent.com/georgealan/Especialista-Spring-REST-Algaworks/master/assets/img/AlgaworksSpringRESTBanner.jpg)
+![](https://raw.githubusercontent.com/georgealan/Especialista-JPA-Algaworks/master/assets/AlgaworksEspecialistaJPABanner.jpg)
 
 <h3 align="center">
     🏆 Treinamento imersivo e online sobre desenvolvimento de REST APIs com Spring para desenvolvimento de REST APIs, como Spring Framework, Spring MVC, Spring Boot, Spring Data JPA, Spring Security, Spring Security OAuth 2 e Spring HATEOAS.
