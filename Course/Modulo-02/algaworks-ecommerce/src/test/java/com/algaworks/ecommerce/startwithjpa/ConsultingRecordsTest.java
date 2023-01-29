@@ -1,36 +1,11 @@
 package com.algaworks.ecommerce.startwithjpa;
 
+import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Product;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ConsultingRecordsTest {
-    private static EntityManagerFactory entityManagerFactory;
-    private EntityManager entityManager;
-
-    @BeforeAll
-    public static void setUpBeforeClass() {
-        entityManagerFactory = Persistence
-                .createEntityManagerFactory("Ecommerce-PU");
-    }
-
-    @AfterAll
-    public static void tearDownAfterClass() {
-        entityManagerFactory.close();
-    }
-
-    @BeforeEach
-    public void setUp() {
-        entityManager = entityManagerFactory.createEntityManager();
-    }
-
-    @AfterEach
-    public void tearDown() {
-        entityManager.close();
-    }
+public class ConsultingRecordsTest extends EntityManagerTest {
 
     @Test
     public void findById() {
