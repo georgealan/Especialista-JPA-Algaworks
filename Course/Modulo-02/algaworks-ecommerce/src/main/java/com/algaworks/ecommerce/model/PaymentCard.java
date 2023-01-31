@@ -8,13 +8,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "client")
+@Table(name = "payment_card")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Client {
+public class PaymentCard {
     @Id
     @EqualsAndHashCode.Include
     private Integer id;
-    private String name;
+    @Column(name = "order_id")
+    private Integer orderId;
     @Enumerated(EnumType.STRING)
-    private ClientGender gender;
+    private PaymentStatus status;
+    private String number;
 }
