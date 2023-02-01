@@ -1,12 +1,11 @@
 package com.algaworks.ecommerce.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,8 +15,12 @@ import lombok.Setter;
 public class Category {
     @Id
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @Column(name = "head_category_id")
-    private Integer headCategoryId;
+    @ManyToOne
+    @JoinColumn(name = "head_category_id")
+    private Category headCategory;
+    @OneToMany(mappedBy = "headCategory")
+    private List<Category> categories;
 }

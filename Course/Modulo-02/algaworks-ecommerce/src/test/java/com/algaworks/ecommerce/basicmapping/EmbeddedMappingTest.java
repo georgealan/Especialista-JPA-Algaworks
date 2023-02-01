@@ -24,7 +24,6 @@ public class EmbeddedMappingTest extends EntityManagerTest {
         adress.setComplemento("17");
 
         PurchaseOrder purchaseOrder = new PurchaseOrder();
-        purchaseOrder.setId(1);
         purchaseOrder.setOrderDate(LocalDateTime.now());
         purchaseOrder.setStatus(StatusOrder.WAITING);
         purchaseOrder.setTotal(new BigDecimal(1000));

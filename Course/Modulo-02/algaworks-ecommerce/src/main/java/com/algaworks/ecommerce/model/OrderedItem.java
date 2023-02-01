@@ -1,9 +1,6 @@
 package com.algaworks.ecommerce.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,11 +15,14 @@ import java.math.BigDecimal;
 public class OrderedItem {
     @Id
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "order_id")
-    private Integer orderId;
-    @Column(name = "product_id")
-    private Integer productId;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private PurchaseOrder purchaseOrder;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
     @Column(name = "product_price")
     private BigDecimal productPrice;
     private Integer quantity;

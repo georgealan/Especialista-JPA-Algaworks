@@ -13,6 +13,7 @@ import lombok.Setter;
 public class BillPayment {
     @Id
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "order_id")
     private Integer orderId;

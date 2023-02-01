@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,7 +17,13 @@ import java.time.LocalDateTime;
 public class PurchaseOrder {
     @Id
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+    @OneToMany(mappedBy = "purchaseOrder")
+    private List<OrderedItem> orderedItems;
     @Column(name = "order_date")
     private LocalDateTime orderDate;
     @Column(name = "conclusion_date")

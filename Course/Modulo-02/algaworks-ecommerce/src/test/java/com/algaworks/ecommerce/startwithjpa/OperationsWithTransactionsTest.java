@@ -27,7 +27,6 @@ public class OperationsWithTransactionsTest extends EntityManagerTest {
     public void insertFirstObject() {
         Product product = new Product();
 
-        product.setId(2);
         product.setName("Canon");
         product.setDescription("The best screen for your shots");
         product.setPrice(new BigDecimal(5000));
@@ -53,7 +52,6 @@ public class OperationsWithTransactionsTest extends EntityManagerTest {
     public void updateObject() {
         Product product = new Product();
 
-        product.setId(1);
         product.setName("Kindle Paperwhite");
         product.setDescription("The new Kindle generation");
         product.setPrice(new BigDecimal(599));
@@ -87,7 +85,6 @@ public class OperationsWithTransactionsTest extends EntityManagerTest {
     public void insertWithMerge() {
         Product product = new Product();
 
-        product.setId(4);
         product.setName("Notebook MSI GT70 2PC");
         product.setDescription("The best notebook ever");
         product.setPrice(new BigDecimal(5000));
