@@ -15,8 +15,9 @@ public class PaymentCard {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "order_id")
-    private Integer orderId;
+    @OneToOne
+    @JoinColumn(name = "purchaseOrder_id")
+    private PurchaseOrder purchaseOrder;
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
     private String number;

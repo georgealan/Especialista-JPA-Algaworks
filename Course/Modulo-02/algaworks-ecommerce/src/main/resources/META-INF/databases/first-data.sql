@@ -3,3 +3,5 @@ insert into product (id, name, price, description) values (3, 'Go Pro Hero', 140
 
 insert into client (id, name) values (1, 'Ayrton Senna');
 insert into client (id, name) values (2, 'José Carlos');
+
+insert into category (id, name) values (1, 'Electronics');
