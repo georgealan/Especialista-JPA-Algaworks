@@ -28,4 +28,6 @@ public class Product {
     private String name;
     private String description;
     private BigDecimal price;
+    @OneToOne(mappedBy = "product")
+    private Stock stock;
 }

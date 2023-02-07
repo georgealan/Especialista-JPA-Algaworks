@@ -19,7 +19,7 @@ public class PurchaseOrder {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "client_id")
     private Client client;
     @OneToMany(mappedBy = "purchaseOrder")
@@ -28,11 +28,13 @@ public class PurchaseOrder {
     private LocalDateTime orderDate;
     @Column(name = "conclusion_date")
     private LocalDateTime conclusionDate;
-    @Column(name = "invoice_id")
-    private Integer invoiceId;
     private BigDecimal total;
     @Enumerated(EnumType.STRING)
     private StatusOrder status;
+    @OneToOne(mappedBy = "purchaseOrder")
+    private PaymentCard paymentCard;
+    @OneToOne(mappedBy = "purchaseOrder")
+    private Invoice invoice;
     @Embedded
     private OrderDeliveryAddress orderDeliveryAddress;
 }

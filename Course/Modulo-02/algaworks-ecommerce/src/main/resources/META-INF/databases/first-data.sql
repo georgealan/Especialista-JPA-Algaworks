@@ -4,4 +4,8 @@ insert into product (id, name, price, description) values (3, 'Go Pro Hero', 140
 insert into client (id, name) values (1, 'Ayrton Senna');
 insert into client (id, name) values (2, 'José Carlos');
 
+insert into purchase_order (id, client_id, order_date, total, status) values (1, 1, sysdate(), 100.0, 'WAITING');
+
+insert into ordered_item (id, order_id, product_id, product_price, quantity) values (1, 1, 1, 5.0, 2);
+
 insert into category (id, name) values (1, 'Electronics');

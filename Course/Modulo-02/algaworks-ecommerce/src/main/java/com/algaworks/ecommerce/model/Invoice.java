@@ -17,8 +17,9 @@ public class Invoice {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "order_id")
-    private Integer orderId;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "order_id")
+    private PurchaseOrder purchaseOrder;
     private String xml;
     @Column(name = "issue_date")
     private Date issueDate;

@@ -1,6 +1,7 @@
 package com.algaworks.ecommerce.basicmapping;
 
 import com.algaworks.ecommerce.EntityManagerTest;
+import com.algaworks.ecommerce.model.Client;
 import com.algaworks.ecommerce.model.PurchaseOrder;
 import com.algaworks.ecommerce.model.OrderDeliveryAddress;
 import com.algaworks.ecommerce.model.StatusOrder;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 public class EmbeddedMappingTest extends EntityManagerTest {
     @Test
     public void verifyEmbeddedObject() {
+        Client client = entityManager.find(Client.class, 1);
         OrderDeliveryAddress adress = new OrderDeliveryAddress();
         adress.setCep("08422-80");
         adress.setLogradouro("Rua dos pilaretes");
@@ -25,6 +27,7 @@ public class EmbeddedMappingTest extends EntityManagerTest {
 
         PurchaseOrder purchaseOrder = new PurchaseOrder();
         purchaseOrder.setOrderDate(LocalDateTime.now());
+        purchaseOrder.setClient(client);
         purchaseOrder.setStatus(StatusOrder.WAITING);
         purchaseOrder.setTotal(new BigDecimal(1000));
         purchaseOrder.setOrderDeliveryAddress(adress);
