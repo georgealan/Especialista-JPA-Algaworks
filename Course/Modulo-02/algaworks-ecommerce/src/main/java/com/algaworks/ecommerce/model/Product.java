@@ -1,5 +1,7 @@
 package com.algaworks.ecommerce.model;
 
+import com.algaworks.ecommerce.listeners.GeneralListener;
+import com.algaworks.ecommerce.listeners.GenerateInvoiceListener;
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -10,9 +12,10 @@ import java.util.List;
 
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "product")
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EntityListeners({GeneralListener.class})
 public class Product {
     @Id
     @EqualsAndHashCode.Include

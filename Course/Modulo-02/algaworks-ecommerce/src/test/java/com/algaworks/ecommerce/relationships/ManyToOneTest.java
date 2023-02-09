@@ -16,7 +16,6 @@ public class ManyToOneTest extends EntityManagerTest {
 
         PurchaseOrder purchaseOrder = new PurchaseOrder();
         purchaseOrder.setStatus(StatusOrder.WAITING);
-        purchaseOrder.setOrderDate(LocalDateTime.now());
         purchaseOrder.setTotal(BigDecimal.TEN);
         purchaseOrder.setClient(client);
 
@@ -37,7 +36,6 @@ public class ManyToOneTest extends EntityManagerTest {
 
         PurchaseOrder purchaseOrder = new PurchaseOrder();
         purchaseOrder.setStatus(StatusOrder.WAITING);
-        purchaseOrder.setOrderDate(LocalDateTime.now());
         purchaseOrder.setTotal(BigDecimal.TEN);
         purchaseOrder.setClient(client);
 

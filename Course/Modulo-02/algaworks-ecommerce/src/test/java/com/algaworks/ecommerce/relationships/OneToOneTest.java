@@ -25,7 +25,7 @@ public class OneToOneTest extends EntityManagerTest {
         entityManager.clear();
 
         PurchaseOrder verifyPurchase = entityManager.find(PurchaseOrder.class, purchaseOrder.getId());
-        assertNotNull(verifyPurchase.getPaymentCard());
+        assertNotNull(verifyPurchase.getPayment());
     }
     @Test
     public void verifyInvoiceRelationship() {
