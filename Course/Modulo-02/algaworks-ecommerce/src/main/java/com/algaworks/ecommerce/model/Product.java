@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -21,6 +22,13 @@ public class Product {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @Column(name = "creation_date", updatable = false)
+    private LocalDateTime creationDate;
+
+    @Column(name = "last_update_date", insertable = false)
+    private LocalDateTime lastUpdateDate;
+
     @OneToMany(mappedBy = "product")
     private List<OrderedItem> orderedItems;
     @ManyToMany

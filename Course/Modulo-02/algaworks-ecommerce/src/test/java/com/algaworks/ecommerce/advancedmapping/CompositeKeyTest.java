@@ -1,57 +1,38 @@
-package com.algaworks.ecommerce.relationships;
+package com.algaworks.ecommerce.advancedmapping;
 
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class OneToManyTest extends EntityManagerTest {
+public class CompositeKeyTest extends EntityManagerTest {
+
     @Test
-    public void verifyOneToMany() {
+    public void saveItem() {
+        entityManager.getTransaction().begin();
+
         Client client = entityManager.find(Client.class, 1);
-
-        PurchaseOrder purchaseOrder = new PurchaseOrder();
-        purchaseOrder.setStatus(StatusOrder.PAID);
-        purchaseOrder.setTotal(BigDecimal.TEN);
-        purchaseOrder.setClient(client);
-
-        entityManager.getTransaction().begin();
-        entityManager.persist(purchaseOrder);
-        entityManager.getTransaction().commit();
-        entityManager.clear();
-
-        Client verifyClient = entityManager.find(Client.class, client.getId());
-        assertFalse(verifyClient.getPurchaseOrders().isEmpty());
-    }
-
-    @Test
-    public void verifyOrderedItemOneToMany() {
-        entityManager.getTransaction().begin();
-
-        Product product = entityManager.find(Product.class, 3);
-        Client client = entityManager.find(Client.class, 2);
+        Product product = entityManager.find(Product.class, 1);
 
         PurchaseOrder purchaseOrder = new PurchaseOrder();
         purchaseOrder.setClient(client);
         purchaseOrder.setCreationDate(LocalDateTime.now());
         purchaseOrder.setStatus(StatusOrder.WAITING);
-        purchaseOrder.setTotal(BigDecimal.TEN);
+        purchaseOrder.setTotal(product.getPrice());
 
         entityManager.persist(purchaseOrder);
         entityManager.flush();
 
         OrderedItem orderedItem = new OrderedItem();
-//        orderedItem.setPurchaseOrderId(purchaseOrder.getId()); // IdClass
-//        orderedItem.setProductId(product.getId()); // IdClass
+//        orderedItem.setPurchaseOrderId(purchaseOrder.getId());
+//        orderedItem.setProductId(product.getId());
         orderedItem.setId(new OrderedItemId(purchaseOrder.getId(), product.getId()));
         orderedItem.setPurchaseOrder(purchaseOrder);
         orderedItem.setProduct(product);
-        orderedItem.setProductPrice(BigDecimal.TEN);
-        orderedItem.setQuantity(20);
+        orderedItem.setProductPrice(product.getPrice());
+        orderedItem.setQuantity(1);
 
         entityManager.persist(orderedItem);
         entityManager.getTransaction().commit();

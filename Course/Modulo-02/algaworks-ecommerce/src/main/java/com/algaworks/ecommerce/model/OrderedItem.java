@@ -13,17 +13,20 @@ import java.math.BigDecimal;
 @Table(name = "ordered_item")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class OrderedItem {
-    @Id
-    @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
+    @EmbeddedId
+    private OrderedItemId id;
+
     @ManyToOne(optional = false)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id", insertable = false, updatable = false)
     private PurchaseOrder purchaseOrder;
+
     @ManyToOne(optional = false)
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id", insertable = false, updatable = false)
     private Product product;
+
     @Column(name = "product_price")
     private BigDecimal productPrice;
+
     private Integer quantity;
 }

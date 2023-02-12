@@ -27,9 +27,9 @@ public class PurchaseOrder {
     private Client client;
     @OneToMany(mappedBy = "purchaseOrder")
     private List<OrderedItem> orderedItems;
-    @Column(name = "creation_date")
+    @Column(name = "creation_date", updatable = false)
     private LocalDateTime creationDate;
-    @Column(name = "last_update_date")
+    @Column(name = "last_update_date", insertable = false)
     private LocalDateTime lastUpdateDate;
     private BigDecimal total;
     @Enumerated(EnumType.STRING)

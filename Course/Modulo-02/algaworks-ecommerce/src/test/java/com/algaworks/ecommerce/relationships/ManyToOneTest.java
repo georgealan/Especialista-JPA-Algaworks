@@ -31,27 +31,38 @@ public class ManyToOneTest extends EntityManagerTest {
 
     @Test
     public void verifyOrderedItem() {
+        entityManager.getTransaction().begin();
+
         Product product = entityManager.find(Product.class, 3);
         Client client = entityManager.find(Client.class, 2);
 
         PurchaseOrder purchaseOrder = new PurchaseOrder();
+        purchaseOrder.setCreationDate(LocalDateTime.now());
         purchaseOrder.setStatus(StatusOrder.WAITING);
         purchaseOrder.setTotal(BigDecimal.TEN);
         purchaseOrder.setClient(client);
 
-        OrderedItem orderedItem = new OrderedItem();
-        orderedItem.setProduct(product);
-        orderedItem.setPurchaseOrder(purchaseOrder);
-        orderedItem.setQuantity(20);
-        orderedItem.setProductPrice(BigDecimal.TEN);
-
-        entityManager.getTransaction().begin();
         entityManager.persist(purchaseOrder);
+        /*
+        It may be that when executing the "persist" method, JPA already synchronizes with the base.
+        But if that doesn't happen, the flush guarantee's synchronization.
+         */
+        entityManager.flush();
+
+        OrderedItem orderedItem = new OrderedItem();
+//        orderedItem.setPurchaseOrderId(purchaseOrder.getId());
+//        orderedItem.setProductId(product.getId());
+        orderedItem.setId(new OrderedItemId(product.getId(), purchaseOrder.getId()));
+        orderedItem.setProductPrice(product.getPrice());
+        orderedItem.setPurchaseOrder(purchaseOrder);
+        orderedItem.setProduct(product);
+        orderedItem.setQuantity(20);
+
         entityManager.persist(orderedItem);
         entityManager.getTransaction().commit();
         entityManager.clear();
 
-        OrderedItem verifyOrderedItem = entityManager.find(OrderedItem.class, orderedItem.getId());
+        OrderedItem verifyOrderedItem = entityManager.find(OrderedItem.class, new OrderedItemId(purchaseOrder.getId(), product.getId()));
         assertNotNull(verifyOrderedItem.getProduct());
         assertNotNull(verifyOrderedItem.getPurchaseOrder());
         assertEquals("Go Pro Hero", verifyOrderedItem.getProduct().getName());
