@@ -13,8 +13,9 @@ import lombok.Setter;
 public class PaymentCard {
     @Id
     @EqualsAndHashCode.Include
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "purchaseOrder_id")
     private Integer id;
+    @MapsId
     @OneToOne(optional = false)
     @JoinColumn(name = "purchaseOrder_id")
     private PurchaseOrder purchaseOrder;

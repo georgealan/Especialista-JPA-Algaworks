@@ -16,6 +16,7 @@ public class OneToManyTest extends EntityManagerTest {
 
         PurchaseOrder purchaseOrder = new PurchaseOrder();
         purchaseOrder.setStatus(StatusOrder.PAID);
+        purchaseOrder.setCreationDate(LocalDateTime.now());
         purchaseOrder.setTotal(BigDecimal.TEN);
         purchaseOrder.setClient(client);
 
@@ -30,8 +31,6 @@ public class OneToManyTest extends EntityManagerTest {
 
     @Test
     public void verifyOrderedItemOneToMany() {
-        entityManager.getTransaction().begin();
-
         Product product = entityManager.find(Product.class, 3);
         Client client = entityManager.find(Client.class, 2);
 
@@ -41,18 +40,15 @@ public class OneToManyTest extends EntityManagerTest {
         purchaseOrder.setStatus(StatusOrder.WAITING);
         purchaseOrder.setTotal(BigDecimal.TEN);
 
-        entityManager.persist(purchaseOrder);
-        entityManager.flush();
-
         OrderedItem orderedItem = new OrderedItem();
-//        orderedItem.setPurchaseOrderId(purchaseOrder.getId()); // IdClass
-//        orderedItem.setProductId(product.getId()); // IdClass
-        orderedItem.setId(new OrderedItemId(purchaseOrder.getId(), product.getId()));
+        orderedItem.setId(new OrderedItemId());
+        orderedItem.setProductPrice(product.getPrice());
+        orderedItem.setQuantity(20);
         orderedItem.setPurchaseOrder(purchaseOrder);
         orderedItem.setProduct(product);
-        orderedItem.setProductPrice(BigDecimal.TEN);
-        orderedItem.setQuantity(20);
 
+        entityManager.getTransaction().begin();
+        entityManager.persist(purchaseOrder);
         entityManager.persist(orderedItem);
         entityManager.getTransaction().commit();
         entityManager.clear();

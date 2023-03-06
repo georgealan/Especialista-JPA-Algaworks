@@ -41,4 +41,10 @@ public class Product {
     private BigDecimal price;
     @OneToOne(mappedBy = "product")
     private Stock stock;
+
+    @ElementCollection
+    @CollectionTable(name = "product_tag",
+        joinColumns = @JoinColumn(name = "product_id"))
+    @Column(name = "tag")
+    private List<String> tags;
 }
